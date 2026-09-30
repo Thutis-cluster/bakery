@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hearth &amp; Wheat Bakery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#4A2F23;
+    --cream:#FBF3E7;
+    --rose:#C9687D;
+    --gold:#C9962B;
+    --line: rgba(74,47,35,0.14);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Figtree', -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ font-family: var(--sans); color: var(--ink); background: var(--cream); line-height:1.65; }
+  a{ color:inherit; }
+  .wrap{ max-width: 1120px; margin:0 auto; padding: 0 24px; }
+
+  /* ---------- Nav ---------- */
+  .nav{ background: var(--cream); border-bottom: 1px solid var(--line); position:sticky; top:0; z-index:20; }
+  .nav .wrap{ display:flex; align-items:center; justify-content:space-between; height:82px; gap:20px; }
+  .brand{ display:flex; align-items:center; gap:10px; font-family: var(--serif); font-weight:700; font-size:1.5rem; color: var(--ink); }
+  .brand svg{ width:32px; height:32px; }
+  .nav-links{ display:flex; gap:28px; list-style:none; }
+  .nav-links a{ text-decoration:none; font-weight:500; font-size:0.9rem; }
+  .nav-links a:hover{ color: var(--rose); }
+  .nav-cta{ background: var(--rose); color:#fff; padding:11px 22px; border-radius:24px; text-decoration:none; font-weight:600; font-size:0.88rem; white-space:nowrap; }
+  @media (max-width:820px){ .nav-links{ display:none; } }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding: 76px 0 70px; }
+  .hero .wrap{ display:grid; grid-template-columns: 1.05fr 0.95fr; gap:56px; align-items:center; }
+  .hero .kicker{ font-family: var(--serif); font-style:italic; font-size:1.15rem; color: var(--rose); margin-bottom:14px; }
+  .hero h1{ font-family: var(--serif); font-weight:700; font-size: clamp(2.5rem,5vw,4rem); line-height:1.12; max-width:12ch; }
+  .hero p{ margin-top:20px; font-size:1.08rem; color: rgba(74,47,35,0.72); max-width:44ch; }
+  .hero-ctas{ margin-top:28px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-primary{ background: var(--ink); color: var(--cream); padding:15px 30px; border-radius:26px; text-decoration:none; font-weight:600; font-size:0.94rem; }
+  .btn-secondary{ padding:15px 30px; border-radius:26px; text-decoration:none; font-weight:600; font-size:0.94rem; border:1.5px solid var(--ink); }
+  .hero-art{ background:#fff; border-radius:20px; aspect-ratio:4/5; display:flex; align-items:center; justify-content:center; box-shadow: 0 24px 48px rgba(74,47,35,0.08); }
+  .hero-art svg{ width:64%; height:64%; }
+  @media (max-width:860px){ .hero .wrap{ grid-template-columns:1fr; } .hero-art{ order:-1; max-width:260px; margin:0 auto; } }
+
+  .trust{ background: var(--ink); }
+  .trust .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px 32px; padding: 20px 24px; }
+  .trust div{ color: var(--cream); font-family: var(--serif); font-weight:600; font-size:1rem; }
+
+  /* ---------- Section shell ---------- */
+  section{ padding: 88px 0; }
+  .section-head{ margin-bottom: 42px; max-width:58ch; }
+  .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+  .kicker{ font-family: var(--serif); font-style:italic; font-size:1.05rem; color: var(--rose); margin-bottom:8px; }
+  h2{ font-family: var(--serif); font-weight:700; font-size: clamp(1.9rem,3.4vw,2.7rem); }
+  .section-head p{ margin-top:12px; color: rgba(74,47,35,0.62); }
+
+  /* ---------- Categories ---------- */
+  .categories{ display:grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+  .category{ background:#fff; border-radius:16px; padding: 28px 22px; text-align:center; }
+  .category svg{ width:40px; height:40px; margin:0 auto 14px; }
+  .category h3{ font-family: var(--serif); font-weight:700; font-size:1.15rem; }
+  .category p{ font-size:0.88rem; color: rgba(74,47,35,0.6); margin-top:8px; }
+  @media (max-width:900px){ .categories{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:520px){ .categories{ grid-template-columns:1fr; } }
+
+  /* ---------- Menu / pricing ---------- */
+  .menu{ background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .service-groups{ display:grid; grid-template-columns: 1fr 1fr; gap: 0 64px; }
+  .service-group{ border-top: 2px solid var(--gold); padding: 20px 0 28px; }
+  .service-group h3{ font-family: var(--serif); font-weight:700; font-size:1.3rem; margin-bottom:6px; color: var(--ink); }
+  .service-row{ display:grid; grid-template-columns: 1fr auto; gap:16px; align-items:baseline; padding:12px 0; border-bottom:1px dotted var(--line); }
+  .service-row:last-child{ border-bottom:none; }
+  .service-row .name small{ display:block; font-weight:400; font-size:0.8rem; color: rgba(74,47,35,0.55); }
+  .service-row .price{ font-family: var(--serif); font-weight:700; font-size:1.15rem; color: var(--rose); white-space:nowrap; }
+  .services-note{ font-size:0.86rem; color: rgba(74,47,35,0.55); margin-top:8px; }
+  @media (max-width:820px){ .service-groups{ grid-template-columns:1fr; gap:0; } }
+
+  /* ---------- Info strip ---------- */
+  .info{ background: var(--rose); color:#fff; }
+  .info .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; padding: 32px 24px; }
+  .info-block b{ display:block; font-family: var(--serif); font-weight:700; font-size:1rem; margin-bottom:4px; }
+  .info-block span{ font-size:0.86rem; color: rgba(255,255,255,0.92); }
+  .info-block a{ color:#fff; text-decoration:underline; }
+
+  /* ---------- Custom cake order ---------- */
+  .order .wrap{ display:grid; grid-template-columns: 0.85fr 1.15fr; gap:56px; }
+  .order .section-head{ margin-bottom:0; }
+  form{ display:grid; gap:16px; }
+  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  label{ display:block; font-size:0.82rem; font-weight:600; margin-bottom:6px; }
+  input, select, textarea{ width:100%; padding:13px 14px; font-family: var(--sans); font-size:0.95rem; border:1px solid var(--line); background: var(--cream); border-radius:10px; }
+  input:focus, select:focus, textarea:focus{ outline:2px solid var(--rose); outline-offset:1px; }
+  .submit-btn{ justify-self:start; background: var(--rose); color:#fff; border:none; padding:15px 32px; font-weight:600; font-size:0.95rem; border-radius:26px; cursor:pointer; }
+  .submit-btn:hover{ background:#b4536a; }
+  .form-note{ font-size:0.82rem; color: rgba(74,47,35,0.5); }
+  @media (max-width:860px){ .order .wrap{ grid-template-columns:1fr; } .form-row{ grid-template-columns:1fr; } }
+
+  /* ---------- Footer ---------- */
+  footer{ background: var(--ink); color: rgba(251,243,231,0.72); padding: 44px 0; }
+  footer .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; font-size:0.88rem; }
+  footer .brand{ color: var(--cream); font-family: var(--serif); font-size:1.15rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" fill="none" stroke="#4A2F23" stroke-width="1.8"><path d="M16 4c-3 4-4 7-4 10a4 4 0 008 0c0-3-1-6-4-10z"/><path d="M8 28c0-6 4-9 8-9s8 3 8 9"/></svg>
+      Hearth &amp; Wheat
+    </div>
+    <ul class="nav-links">
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#cakes">Custom Cakes</a></li>
+      <li><a href="#order">Order</a></li>
+    </ul>
+    <a class="nav-cta" href="#order">Order ahead</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="kicker">baked fresh, every morning</div>
+      <h1>Bread worth waking up for.</h1>
+      <p>Sourdough, croissants, and celebration cakes made by hand with real butter and no shortcuts — ready from 6am, gone by noon most days.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#menu">See today's menu</a>
+        <a class="btn-secondary" href="#cakes">Order a custom cake</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40 120c0-30 25-55 60-55s60 25 60 55" stroke="#4A2F23" stroke-width="2.5"/>
+        <path d="M40 120c15 10 35 15 60 15s45-5 60-15" stroke="#4A2F23" stroke-width="2.5"/>
+        <path d="M60 110c6-14 18-22 40-22s34 8 40 22" stroke="#C9687D" stroke-width="2"/>
+        <path d="M70 92c4-8 10-10 30-10M100 82c8 0 16 3 22 10" stroke="#C9962B" stroke-width="1.6"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap">
+    <div>Baked fresh daily</div>
+    <div>Real butter, no shortcuts</div>
+    <div>Custom celebration cakes</div>
+    <div>Wholesale &amp; catering available</div>
+  </div>
+</div>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="kicker">what we bake</div>
+      <h2>From the oven to your table</h2>
+    </div>
+    <div class="categories">
+      <div class="category">
+        <svg viewBox="0 0 40 40" fill="none" stroke="#C9687D" stroke-width="2"><path d="M8 26c0-10 5-18 12-18s12 8 12 18"/><path d="M8 26h24M14 26V16M20 26V14M26 26V16"/></svg>
+        <h3>Breads</h3>
+        <p>Sourdough, baguettes, rye, and daily specials.</p>
+      </div>
+      <div class="category">
+        <svg viewBox="0 0 40 40" fill="none" stroke="#C9687D" stroke-width="2"><path d="M8 24c4-10 10-14 12-14s8 4 12 14c-4 4-8 6-12 6s-8-2-12-6z"/></svg>
+        <h3>Pastries</h3>
+        <p>Croissants, pain au chocolat, and morning buns.</p>
+      </div>
+      <div class="category">
+        <svg viewBox="0 0 40 40" fill="none" stroke="#C9687D" stroke-width="2"><rect x="10" y="18" width="20" height="12" rx="2"/><path d="M14 18c0-4 3-8 6-8s6 4 6 8"/><circle cx="20" cy="8" r="2" fill="#C9687D" stroke="none"/></svg>
+        <h3>Celebration Cakes</h3>
+        <p>Birthday, wedding, and custom-order cakes.</p>
+      </div>
+      <div class="category">
+        <svg viewBox="0 0 40 40" fill="none" stroke="#C9687D" stroke-width="2"><path d="M10 16h16v8a8 8 0 01-16 0z"/><path d="M26 18h3a3 3 0 010 6h-3"/><path d="M14 8c0 2 2 2 2 4M20 8c0 2 2 2 2 4"/></svg>
+        <h3>Coffee &amp; Cafe</h3>
+        <p>Espresso drinks and a seat to enjoy them in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="menu-prices">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">today's menu</div>
+      <h2>A few of our regulars</h2>
+    </div>
+    <div class="service-groups">
+      <div class="service-group">
+        <h3>Breads &amp; Pastries</h3>
+        <div class="service-row"><div class="name">Country sourdough<small>Whole loaf</small></div><div class="price">$8.50</div></div>
+        <div class="service-row"><div class="name">Baguette</div><div class="price">$4.50</div></div>
+        <div class="service-row"><div class="name">Butter croissant</div><div class="price">$4.00</div></div>
+        <div class="service-row"><div class="name">Pain au chocolat</div><div class="price">$4.50</div></div>
+        <div class="service-row"><div class="name">Cinnamon morning bun</div><div class="price">$5.00</div></div>
+        <div class="service-row"><div class="name">Seeded rye loaf</div><div class="price">$9.00</div></div>
+      </div>
+      <div class="service-group">
+        <h3>Cakes &amp; Coffee</h3>
+        <div class="service-row"><div class="name">Slice of cake<small>Ask what's fresh today</small></div><div class="price">$6.50</div></div>
+        <div class="service-row"><div class="name">Custom cake<small>Starting price, 6-inch</small></div><div class="price">from $45</div></div>
+        <div class="service-row"><div class="name">Cupcakes<small>Per dozen</small></div><div class="price">$32</div></div>
+        <div class="service-row"><div class="name">Espresso / Americano</div><div class="price">$3.50</div></div>
+        <div class="service-row"><div class="name">Cappuccino / Latte</div><div class="price">$4.50</div></div>
+      </div>
+    </div>
+    <p class="services-note">Prices are estimates and vary by size and design — final pricing confirmed at order.</p>
+  </div>
+</section>
+
+<div class="info">
+  <div class="wrap">
+    <div class="info-block"><b>Hours</b><span>Tue–Sun, 6am–3pm · Closed Mondays</span></div>
+    <div class="info-block"><b>Location</b><span>118 Baker Street</span></div>
+    <div class="info-block"><b>Phone</b><span><a href="tel:+15550194732">(555) 019-4732</a></span></div>
+  </div>
+</div>
+
+<section class="order" id="cakes">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">custom cakes</div>
+      <h2>Order ahead, especially for cakes</h2>
+      <p>Celebration and wedding cakes need at least 5 days' notice. Tell us the occasion, size, and flavor, and we'll follow up with a quote.</p>
+    </div>
+    <form onsubmit="event.preventDefault(); alert('Thanks — replace this with your real order handler.');">
+      <div class="form-row">
+        <div><label for="name">Full name</label><input id="name" type="text" required></div>
+        <div><label for="phone">Phone</label><input id="phone" type="tel" required></div>
+      </div>
+      <div class="form-row">
+        <div><label for="occasion">Occasion</label><input id="occasion" type="text" placeholder="e.g. birthday, wedding"></div>
+        <div><label for="date">Date needed</label><input id="date" type="date"></div>
+      </div>
+      <div class="form-row">
+        <div><label for="size">Size / servings</label><input id="size" type="text" placeholder="e.g. serves 20"></div>
+        <div><label for="flavor">Flavor</label><input id="flavor" type="text" placeholder="e.g. vanilla, chocolate"></div>
+      </div>
+      <div>
+        <label for="details">Design details</label>
+        <textarea id="details" rows="3" placeholder="Colors, theme, any inspiration photos you'll send by email"></textarea>
+      </div>
+      <button class="submit-btn" type="submit">Request a quote</button>
+      <p class="form-note">This form doesn't send email on its own — see the notes below for how to connect it in WordPress.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">Hearth &amp; Wheat</div>
+    <div>118 Baker Street · (555) 019-4732 · hello@hearthandwheat.com</div>
+  </div>
+</footer>
+
+</body>
+</html>
